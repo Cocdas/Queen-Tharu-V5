@@ -1,157 +1,578 @@
+const { copy } = require('fs-extra')
 const config = require('../config')
-const {cmd , commands} = require('../command')
+const os = require('os')
+const { cmd, commands } = require('../command')
+const { getBuffer, getGroupAdmins, getRandom, h2k, isUrl, Json, runtime, sleep, Func, fetchJson} = require('../lib/functions')
+let cap = '* QUEEN_THARU_V❼ ᴡʜᴀᴛꜱᴀᴘᴘ ᴜꜱᴇʀ ʙᴏᴛ*\n*ᴄʀᴇᴀᴛᴇᴅ ʙʏ CHAMINDU *'
+//=====================================================================================
+cmd({
+        pattern: "owner",
+        react: "🩸",
+        alias: ["status"],
+        desc: "Check bot owner cmd.",
+        category: "other",
+        use: '.owner',
+        filename: __filename
+    },
+    async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply,react}) => {
+    try{
+        
+    
+    const rtime = await runtime(process.uptime())
+    
+    const txt =`> *👋. *HEY* *${pushname}* ジ,
+_________________________
+
+🍫 ∆ ◦ _*ɴᴀᴍᴇ ʙᴏᴛ*_ : QUEEN_THARU_V❼
+__________________________________________________________
+
+🌜 ∆ ◦ _*ᴄʀᴇᴀᴛᴏʀ*_ : *CHAMINDU * ジ 🤍
+__________________________________________________________
+
+👻 ∆ ◦ _*ᴠᴇʀsɪᴏɴs*_ : 2.0.0 ( *ᴀᴅᴅᴇᴅ ʜɪᴅᴅᴇɴ ғᴇᴀᴜᴛᴜʀᴇs* )🤍
+__________________________________________________________
+
+🧩 ∆ ◦ _*ᴛʏᴘᴇ sᴄʀɪᴘᴛ*_ : *ᴘʟᴜɢɪɴs* 🤍
+__________________________________________________________
+
+🖲️ ∆ ◦ _*ᴄᴏɴᴛᴀᴄᴛ*_ : ~https://wa.me/94742952930~ 🤍         
+_________________________
+
+*OWNER IS SLEEPING DON'T DISTURB* 🤫
+
+    
+    let buttons = [{
+                name: "cta_url",
+                buttonParamsJson: JSON.stringify({
+                    display_text: '𝙲𝙾𝙽𝚃𝙰𝙲𝚃-𝙾𝚆𝙽𝙴𝚁 🤭',
+                    url: `https://wa.me/94742952930?text=*Hi CHAMINDU 🙂*`,
+                    merchant_url: `https://wa.me/94742952930?text=*Hi_CHAMINDU🙂*`
+          }),
+      },
+
+    
+    ]
+    
+    let message = {
+        image: config.LOGO,
+      header: '',
+      footer: config.FOOTER,
+      
+    
+    
+      body: txt
+    
+    }
+    
+    
+    
+    
+    
+    
+    return await conn.sendButtonMessage(from, buttons, m, message)
+    } catch (e) {
+        reply('*Error !!*')
+        console.log(e)
+    }
+    })
+    
+cmd({
+        pattern: "alive",
+        react: "👻",
+        alias: ["online", "test", "bot"],
+        desc: "Check bot online or no.",
+        category: "other",
+        use: '.alive',
+        filename: __filename
+    },
+    async (conn, mek, m, {
+        from,
+        prefix,
+        pushname,
+        reply
+    }) => {
+        try {
+            if (os.hostname().length == 12) hostname = 'replit'
+            else if (os.hostname().length == 36) hostname = 'heroku'
+            else if (os.hostname().length == 8) hostname = 'koyeb'
+            else hostname = os.hostname()
+            let monspace = '```'
+            const sssf = `${monspace}🤍 Hello ${pushname} I'm alive now${monspace}
+
+*QUEEN_THARU_V❼*
+    
+> *Name Bot* : QUEEN_THARU_V❼
+> *Versions* : ${require("../package.json").version}
+> *Type Script* : ᴘʟᴜɢɪɴs
+> *Memory:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+> *Runtime:* ${runtime(process.uptime())}
+> *Platform:* ${hostname}`
+
+            let buttons = [{
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: config.BTN,
+                        url: config.BTNURL,
+                        merchant_url: config.BTNURL
+                    }),
+                },
+                {
+                    name: "quick_reply",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "QUEEN_THARU_V❼ 📑",
+                        id: ".menu"
+                    }),
+                }
+            ]
+            let opts = {
+                image: config.LOGO,
+                header: '',
+                footer: config.FOOTER,
+                body: sssf
+
+            }
+            return await conn.sendButtonMessage(from, buttons, m, opts)
+        } catch (e) {
+            reply('*Error !!*')
+            console.log(e)
+        }
+    })
+
+cmd({
+        pattern: "rules",
+        react: "🗿",
+        alias: ["online", "test", "bot"],
+        desc: "Check bot rules.",
+        category: "other",
+        use: '.rules',
+        filename: __filename
+    },
+    async (conn, mek, m, {
+        from,
+        prefix,
+        pushname,
+        reply
+    }) => {
+        try {
+            if (os.hostname().length == 12) hostname = 'replit'
+            else if (os.hostname().length == 36) hostname = 'heroku'
+            else if (os.hostname().length == 8) hostname = 'koyeb'
+            else hostname = os.hostname()
+            let monspace = '```'
+            const sssf = `┏━━━°❀ ❬ *Rules QUEEN_THARU_V❼ MultiDevice* ❭ ❀°━━━┓
+
+1. ✧ *Spamming Bots is Prohibited*, If Caught You Will Be Banned.
+
+2. ✧ If the Bot Doesn't Answer 1x, Please Try Again. But If the Bot Doesn't Answer 2x, That Means Delay, Don't Use It First.
+
+3. ✧ *Don't Spam Bots, If You Haven't Donated, Just Be Aware of Using It* :)
+
+4. ✧ If the Limit Runs Out, Please Play Games to Get Exp. Example Games: Guessing Games, RPG Games, etc.
+
+5. ✧ *Sending Virtex/Bugs to Bots is Prohibited*, Even Though It Has No Effect :v
+
+6. ✧ *Call Bots Are Strictly Prohibited*, If You Call You Will Be Automatically Blocked.
+
+7. ✧ If You Don't Understand How to Use Bots, Please Ask Other Members. Or If You Haven't Joined the Bot Group, Type #gcbot and Enter the Bot Group.
+
+ 8. ✧ If There is an Error Feature/Do Not Understand How to Use It, Please Report/Ask the Owner.
+
+9. ✧ If the Bot Delays, Do Not Spam It First.
+
+10. ✧ For *Premium* Users, *It is Strictly Prohibited to Send Original Bugs to Others*.
+
+┗━━━━━━━━━━━━━━━━━━━━━━━━━━━━┛
+    
+> *Name Bot* : QUEEN_THARU_V❼
+> *Versions* : ${require("../package.json").version}
+> *Type Script* : ᴘʟᴜɢɪɴs
+> *Memory:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+> *Runtime:* ${runtime(process.uptime())}
+> *Platform:* ${hostname}
+____________________________________________`
+
+            let buttons = [{
+                    name: "cta_url",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: config.BTN,
+                        url: config.BTNURL,
+                        merchant_url: config.BTNURL
+                    }),
+                },
+                {
+                    name: "quick_reply",
+                    buttonParamsJson: JSON.stringify({
+                        display_text: "QUEEN_THARU_V❼",
+                        id: ".alive"
+                    }),
+                }
+            ]
+            let opts = {
+                image: config.LOGO,
+                header: '',
+                footer: config.FOOTER,
+                body: sssf
+
+            }
+            return await conn.sendButtonMessage(from, buttons, m, opts)
+        } catch (e) {
+            reply('*Error !!*')
+            console.log(e)
+        }
+    })
+    
+    cmd({
+        pattern: "animes",
+        react: "😽",
+        alias: ["status"],
+        desc: "Check bot system status.",
+        category: "anime",
+        use: '.animes',
+        filename: __filename
+    },
+    async(conn, mek, m,{from, l, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants,  isItzcp, groupAdmins, isBotAdmins, isAdmins, reply,react}) => {
+    try{
+        
+    
+    const rtime = await runtime(process.uptime())
+    
+    const txt =`🪙Command : anime
+📝Desc : You can get Anime images.
+☘Use: .anime
+
+🪙Command : animeeg
+📝Desc : You Can search Animes.
+☘Use: .animeeg
+
+🪙Command : loli
+📝Desc : Anime cmd.
+☘Use: .loli
+
+🪙Command : waifu
+📝Desc : Anime cmd.
+☘Use: .waifu
+
+🪙Command : neko
+📝Desc : Anime cmd.
+☘Use: .neko
+
+🪙Command : megumin
+📝Desc : Anime cmd.
+☘Use: .megumin
+
+🪙Command : maid
+📝Desc : Anime cmd.
+☘Use: .maid
+
+🪙Command : awoo
+📝Desc : Anime cmd.
+☘Use: .awoo
+
+🪙Command : anime1
+📝Desc : Anime cmd.
+☘Use: .anime1
+
+🪙Command : anime2
+📝Desc : Anime cmd.
+☘Use: .anime2
+
+🪙Command : anime3
+📝Desc : Anime cmd.
+☘Use: .anime3
+
+🪙Command : anime4
+📝Desc : Anime cmd.
+☘Use: .anime4
+
+🪙Command : anime5
+📝Desc : Anime cmd.
+☘Use: .anime5
+
+🪙Command : nsfw1
+📝Desc : Anime cmd.
+☘Use: .nsfw1
+
+🪙Command : nsfw2
+📝Desc : Anime cmd.
+☘Use: .nsfw2
+
+🪙Command : nsfw3
+📝Desc : Anime cmd.
+☘Use: .nsfw3
+
+🪙Command : nsfw4
+📝Desc : Anime cmd.
+☘Use: .nsfw4
+
+🪙Command : nsfw5
+📝Desc : Anime cmd.
+☘Use: .nsfw5`
+    
+    let buttons = [
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "ΛПIMΣ 1 💗",
+              id: ".anime1"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "ΛПIMΣ 2 💗",
+              id: ".anime2"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "ΛПIMΣ 3 💗",
+              id: ".anime3"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "ΛПIMΣ 4 💗",
+              id: ".anime4"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "ΛПIMΣ 5 💗",
+              id: ".anime5"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝑵𝒔𝒇𝒘 1 🥶",
+              id: ".nsfw1"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝑵𝒔𝒇𝒘 2 🥶",
+              id: ".nsfw2"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝑵𝒔𝒇𝒘 3 🥶",
+              id: ".nsfw3"
+          }),
+      },
+      {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝑵𝒔𝒇𝒘 4 🥶",
+              id: ".nsfw4"
+          }),
+      },
+      {
+        name: "quick_reply",
+        buttonParamsJson: JSON.stringify({
+            display_text: "𝑵𝒔𝒇𝒘 5 🥶",
+            id: ".nsfw5"
+        }),
+    },
+
+    
+    ]
+    
+    let message = {
+        image: config.LOGO,
+      header: '',
+      footer: config.FOOTER,
+      
+    
+    
+      body: txt
+    
+    }
+    
+    
+    
+    
+    
+    
+    return await conn.sendButtonMessage(from, buttons, m, message)
+    } catch (e) {
+        reply('*Error !!*')
+        console.log(e)
+    }
+    })
 
 cmd({
     pattern: "menu",
-    react: "📄",
-    desc: "cmd list",
-    category: "main",
+    react: "📜",
+    alias: ["panel", "list", "commands", "cmd"],
+    desc: "Get bot\'s command list.",
+    category: "other",
+    use: '.menu',
     filename: __filename
-},
-async(conn, mek, m,{from, quoted, body, isCmd, command, args, q, isGroup, sender, senderNumber, botNumber2, botNumber, pushname, isMe, isOwner, groupMetadata, groupName, participants, groupAdmins, isBotAdmins, isAdmins, reply}) => {
-try{
-let menu = {
-main: '',
-download: '',
-group: '',
-owner: '',
-convert: '',
-search: '',
-};
-for (let i = 0; i < commands.length; i++) {
-if (commands[i].pattern && !commands[i].dontAddCommandList) {
-menu[commands[i].category] += `.${commands[i].pattern}\n`;
- }
+}, async (conn, mek, m, { from, pushname, reply }) => {
+    try {
+        let wm = `QUEEN_THARU_V❼ v${require("../package.json").version} (Test)\n ᴍᴀᴅᴇ ʙʏ CHAMINDU `
+        if (os.hostname().length == 12) hostname = 'replit'
+        else if (os.hostname().length == 36) hostname = 'heroku'
+        else if (os.hostname().length == 8) hostname = 'koyeb'
+        else hostname = os.hostname()
+        let monspace = '```'
+        const MNG = `👋 *Hey ${pushname}!* 🍃
+Welcome to QUEEN_THARU_V❼, bot WhatsApp is ready to help you!
+
+_____________________________________
+
+QUEEN_THARU_V❼
+
+> Hey 💠 This Is QUEEN_THARU_V❼ MENU 💗
+
+*ʜɪ 💗, ʙᴇғᴏʀᴇ ɢᴏɪɴɢ ᴛᴏ ᴛʜᴇ ғᴇᴀᴛᴜʀᴇs ᴍᴇɴᴜ 📁, ᴘʟᴇᴀsᴇ ʀᴇᴀᴅ ᴛʜᴇ ʀᴜʟᴇs ғᴏʀ ᴜsɪɴɢ ᴛʜᴇ ʙᴏᴛ* 💠
+
+*🚫𝟷. sᴘᴀᴍ ʙᴏᴛs ᴀʀᴇ ᴘʀᴏʜɪʙɪᴛᴇᴅ.❕*
+*⛔𝟸. ᴄᴀʟʟɪɴɢ ʙᴏᴛs ɪs ᴘʀᴏʜɪʙɪᴛᴇᴅ.❕*
+*🚫𝟹. ᴄᴀʟʟɪɴɢ ᴏᴡɴᴇʀ ɴᴜᴍʙᴇʀ ɪs ᴘʀᴏʜɪʙɪᴛᴇᴅ.❕*
+*⛔𝟺. sᴘᴀᴍ ᴛᴏ ɴᴏ ᴏᴡɴᴇʀ ɪs ᴘʀᴏʜɪʙɪᴛᴇᴅ.❕*
+_____________________________________
+
+┌─ 📊 *DASHBOARD* ─┐
+│
+├─ 🩵 *User*: ${pushname}
+├─ 🩵 *Mode*: Public
+│
+├─ 🤖 *INFO BOT* ─┐
+│
+├─ 🤍 *ɴᴀᴍᴇ ʙᴏᴛ*: QUEEN_THARU_V❼
+├─ 🤍 *ᴘʟᴀᴛꜰᴏʀᴍ:* ${hostname}
+├─ 🤍 *ᴛʏᴘᴇ sᴄʀɪᴘᴛ* : ᴘʟᴜɢɪɴs
+├─ 🤍 *ʀᴜɴᴛɪᴍᴇ:* ${runtime(process.uptime())}
+├─ 🤍 *ᴍᴇᴍᴏʀʏ:* ${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)}MB / ${Math.round(require('os').totalmem / 1024 / 1024)}MB
+└─ 🤍 *ᴠᴇʀsɪᴏɴs* : ${require("../package.json").version}
+│
+└─ 💐 Thank you for using *QUEEN_THARU_V❼* ! 🌟`
+
+        const categories = [];
+        const categoryMap = new Map();
+
+        for (let i = 0; i < commands.length; i++) {
+            const cmd = commands[i];
+            if (!cmd.dontAddCommandList && cmd.pattern !== undefined) {
+                const category = cmd.category.toUpperCase();
+                if (!categoryMap.has(category)) {
+                    categories.push(category);
+                    categoryMap.set(category, []);
+                }
+                categoryMap.get(category).push(cmd.pattern);
+            }
+        }
+
+        const rows = []
+        for (const category of categories) {
+            rows.push({
+                header: '',
+                title: `${category} MENU`,
+                description: '',
+                id: `.category ${category}`
+            })
+        }
+
+        let buttons = [{
+                name: "cta_url",
+                buttonParamsJson: JSON.stringify({
+                    display_text: '𝙸𝙽𝙵𝙾-QUEEN_THARU_V❼ 🔍',
+                    url: `https://whatsapp.com/channel/0029Va8f3smKWEKvPUzXQv34`,
+                    merchant_url: `https://whatsapp.com/channel/0029Va8f3smKWEKvPUzXQv34`
+                }),
+                  },
+                  {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝐑𝐔𝐋𝐄𝐒 🗿",
+              id: ".rules"
+          }),
+            },
+            {
+          name: "quick_reply",
+          buttonParamsJson: JSON.stringify({
+              display_text: "𝐎𝐖𝐍𝐄𝐑 👤",
+              id: ".owner"
+          }),
+            },
+            {
+                name: "single_select",
+                buttonParamsJson: JSON.stringify({
+                    title: '𝐁𝐎𝐓-𝐂𝐀𝐓𝐄𝐆𝐎𝐑𝐘 🥵',
+                    sections: [{
+                        title: 'Please select a category',
+                        highlight_label: 'Qᴜᴇᴇɴ-ᴋᴇɴᴢɪ ᴍᴅ ᴠ2',
+                        rows: rows
+                    }]
+                }),
+            }
+        ]
+
+        let opts = {
+            image: `https://8030.us.kg/file/mKXIMtf1PF1i.jpg`,
+            header: '',
+            footer: wm,
+            body: MNG
+        }
+
+        return await conn.sendButtonMessage(from, buttons, m, opts)
+    } catch (e) {
+        reply('*Error !!*')
+        console.log(e)
+    }
+})
+
+cmd({
+    pattern: "category",
+    dontAddCommandList: true,
+    filename: __filename
+}, async (conn, mek, m, { from, q, reply }) => {
+    try {
+        let wm = '*QUEEN_THARU_V❼ ᴡʜᴀᴛꜱᴀᴘᴘ ᴜꜱᴇʀ ʙᴏᴛ*\n*ᴄʀᴇᴀᴛᴇᴅ ʙʏ • CHAMINDU*'
+        const category = q.trim().toUpperCase();
+        let commandList = `*࿈ ${category} ℭ𝔬𝔪𝔪𝔞𝔫𝔡 𝔏𝔦𝔰𝔱:*\n\n`;
+
+        for (let i = 0; i < commands.length; i++) {
+            const cmd = commands[i];
+            if (cmd.category.toUpperCase() === category) {
+                commandList += ` ❥ *${cmd.use}* \n`;
+            }
+        }
+
+        commandList += `\n✦ *𝚃𝚘𝚝𝚊𝚕 𝙲𝚘𝚖𝚖𝚊𝚗𝚍𝚜 𝚒𝚗 ${category}*: ${commands.filter(cmd => cmd.category.toUpperCase() === category).length}\n\n${wm}`
+
+        //await conn.sendMessage(from, { text: commandList }, { quoted: mek });
+        await conn.sendMessage(from, {
+text: commandList,
+  contextInfo: {
+    mentionedJid: [ '' ],
+    groupMentions: [],
+    forwardingScore: 1111,
+    isForwarded: true,
+    forwardedNewsletterMessageInfo: {
+      newsletterJid: '120363192956026815@newsletter',
+      newsletterName: "QUEEN_THARU_V❼",
+      serverMessageId: 1234
+    },
+externalAdReply: { 
+title: 'QUEEN_THARU_V❼',
+body: 'ᴀ ꜱɪᴍᴘʟᴇ ᴡʜᴀᴛꜱᴀᴘᴘ ʙᴏᴛ',
+mediaType: 1,
+sourceUrl: "https://github.com/dark-chami21" ,
+thumbnailUrl: 'https://8030.us.kg/file/mKXIMtf1PF1i.jpg' ,
+renderLargerThumbnail: true,
+showAdAttribution: false
 }
-
-let madeMenu = `
-
-👋 *HELLO ${pushname}*
-
-╭─「 *Welcome to QUEEN_THARU_V➄* 」
-╰─────────────
-
-╭─「 *Download Menu* 」
-╰──────────────
-> ⟡━⟪ *📥* ⟫━⟡
-╭────────────◦✘
- ╎ .apk
- ╎ .fb
- ╎ .tiktok
- ╎ .twitter 
- ╎ .gdrive
- ╎ .mediafire 
- ╎ .ig
- ╎ .movie 
-╰────────────◦✘
-
-╭─「 *Main Menu* 」
-╰──────────────
-> ⟡━⟪ *👤* ⟫━⟡
-╭────────────◦✘
- ╎ .about
- ╎ .ai
- ╎ .alive
- ╎ .menu
- ╎ .owner
- ╎ .ping
- ╎ .repo
- ╎ .support
- ╎ .system 
-╰────────────◦✘
-
-╭─「 *Fun Menu* 」
-╰──────────────
-> ⟡━⟪ *🧘* ⟫━⟡
-╭────────────◦✘
- ╎ .animegirl
- ╎ .dog
- ╎ .fact
- ╎ .hack 
- ╎ .joke
- ╎ .quote
- ╎ .rvideo 
-╰────────────◦✘
-
-╭─「 *Convert Menu* 」
-╰──────────────
-> ⟡━⟪ *🔄* ⟫━⟡
-╭────────────◦✘
- ╎ .convert
-╰────────────◦✘
-
-╭─「 *Search Menu* 」
-╰──────────────
-> ⟡━⟪ *🔍* ⟫━⟡
-╭────────────◦✘
- ╎ .phub
- ╎ .srepo
- ╎ .yts
-╰────────────◦✘
-
-╭─「 *Group Menu* 」
-╰──────────────
-> ⟡━⟪ *👥* ⟫━⟡
-╭────────────◦✘
- ╎ .mute
- ╎ .unmute
- ╎ .promote
- ╎ .demote 
- ╎ .del
- ╎ .remove 
- ╎ .add
- ╎ .setgoodbye
- ╎ .setwelcome
- ╎ .getpic
-╰────────────◦✘
-
-╭─「 *Owner Menu* 」
-╰──────────────
-> ⟡━⟪ *🫡* ⟫━⟡
-╭────────────◦✘
- ╎ .shutdown
- ╎ .broadcast
- ╎ .setpp
- ╎ .block
- ╎ .unblock
- ╎ .clearchats
- ╎ .jid
- ╎ .gjid
- ╎ .restart
- ╎ .setautobio
-╰────────────◦✘
-
-╭─「 *News Menu* 」
-╰──────────────
-> ⟡━⟪ *👤* ⟫━⟡
-╭────────────◦✘
- ╎ .hiru
- ╎ .derana
- ╎ .sirasa
- ╎ .lankadeepa
- ╎ .bbc
-╰────────────◦✘
-
-╭─「 *Other Menu* 」
-╰──────────────
-> ⟡━⟪ *📜* ⟫━⟡
-╭────────────◦✘
- ╎ .define
- ╎ .githubstalk
- ╎ .gpass
- ╎ .trt
- ╎ .weather 
-╰────────────◦✘
-
-*CODE BY CHAMINDU*
-*QUEEN_THARU_V➄*
-`
-await conn.sendMessage(from,{image:{url:"https://i.ibb.co/YhYStZ8/IMG-20240923-WA0006.jpg"},caption:madeMenu},{quoted:mek})
-
-
-
-}catch(e){
-console.log(e)
-reply(`${e}`)
-}
+}}, { quoted: mek})
+    } catch (e) {
+        reply('*Error !!*')
+        console.log(e)
+    }
 })
