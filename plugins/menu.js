@@ -2,7 +2,7 @@ const config = require('../config')
 const {cmd , commands} = require('../command')
 
 cmd({
-    pattern: "menu",
+    pattern: "list",
     react: "📄",
     desc: "cmd list",
     category: "main",
