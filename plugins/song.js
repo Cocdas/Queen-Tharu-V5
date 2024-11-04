@@ -15,29 +15,29 @@ async (conn, mek, m, {
 }) => {
     try {
         const search = await yts(q);
-        if (!q) return reply("🚫 Please provide a URL or song name! 🚫");
+        if (!q) return reply("🚫 *Please provide a URL or song name!* 🚫");
         
         const data = search.videos[0];
         const url = data.url;
         
         let desc = `
-🎶 𝗗𝗜𝗭𝗘𝗥 𝗦𝗢𝗡𝗚 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗥 🎶
+🎶 *𝗗𝗜𝗭𝗘𝗥 𝗦𝗢𝗡𝗚 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗𝗘𝗥* 🎶
 
-🎵 𝗧𝗶𝘁𝗹𝗲: ${data.title}
-📝 𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻: ${data.description}
-⏰ 𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻: ${data.timestamp}
-📅 𝗨𝗽𝗹𝗼𝗮𝗱𝗲𝗱: ${data.ago}
-👀 𝗩𝗶𝗲𝘄𝘀: ${data.views.toLocaleString()}
+🎵 *𝗧𝗶𝘁𝗹𝗲:* ${data.title}
+📝 *𝗗𝗲𝘀𝗰𝗿𝗶𝗽𝘁𝗶𝗼𝗻:* ${data.description}
+⏰ *𝗗𝘂𝗿𝗮𝘁𝗶𝗼𝗻:* ${data.timestamp}
+📅 *𝗨𝗽𝗹𝗼𝗮𝗱𝗲𝗱:* ${data.ago}
+👀 *𝗩𝗶𝗲𝘄𝘀:* ${data.views.toLocaleString()}
 
-🔗 𝗟𝗶𝗻𝗸: [Click Here](${url})
+🔗 *𝗟𝗶𝗻𝗸:* [Click Here](${url})
 
-💻 𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 𝗗𝗜𝗭𝗘𝗥 💻
+*💻 𝗣𝗢𝗪𝗘𝗥𝗘𝗗 𝗕𝗬 𝗗𝗜𝗭𝗘𝗥 💻*
 `;
 
         await conn.sendMessage(from, { image: { url: data.thumbnail }, caption: desc }, { quoted: mek });
         
         // Await user response for choosing audio or document
-        reply("🎉 To download, send:\n\n*1* for 🎶 Audio File\n*2* for 📄 Document File");
+        reply("🎉 To download, send:\n\n*1* for 🎶 *Audio File*\n*2* for 📄 *Document File*");
 
         conn.on('chat-update', async chatUpdate => {
             if (!chatUpdate.messages) return;
@@ -56,13 +56,13 @@ async (conn, mek, m, {
                     await conn.sendMessage(from, { audio: { url: downloadUrl }, mimetype: "audio/mpeg" }, { quoted: mek });
                 } else if (messageContent === "2") {
                     // Send document file
-                    await conn.sendMessage(from, { document: { url: downloadUrl }, mimetype: "audio/mpeg", fileName: ${data.title}.mp3, caption: "💻 𝗠𝗔𝗗𝗘 𝗕𝗬 𝗗𝗜𝗭𝗘𝗥 💻" }, { quoted: mek });
+                    await conn.sendMessage(from, { document: { url: downloadUrl }, mimetype: "audio/mpeg", fileName: `${data.title}.mp3`, caption: "💻 *𝗠𝗔𝗗𝗘 𝗕𝗬 𝗗𝗜𝗭𝗘𝗥* 💻" }, { quoted: mek });
                 }
             }
         });
         
     } catch (e) {
         console.log(e);
-        reply(⚠️ *Error:* ${e});
+        reply(`⚠️ *Error:* ${e}`);
     }
 });
